@@ -19,3 +19,26 @@ Route::post("/create-tournament", [TorneoController::class, 'create']);
 
 Route::post("/create-tournament/{videojuego}", [TorneoController::class, 'createWithGame']);
 Route::get("tournament/{torneo}", [TorneoController::class, "show"]);
+
+
+////
+
+Route::get('/students', function (){
+    return 'obteniendo lista de estudiantes';
+});
+
+Route::get('/students', function (){
+    return 'obteniendo un estudiante ';
+});
+
+Route:: post('/students/{id}', function () {
+    return 'Creando estudiantes' ;
+});
+
+    Route:: put('/students/{id}', function () {
+    return 'Actualizando estudiante';
+});
+
+    Route:: delete('/students/{id}', function () {
+    return 'Eliminando estudiante';
+});
