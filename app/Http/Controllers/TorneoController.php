@@ -34,7 +34,7 @@ class TorneoController extends Controller
 
     }
 
-    public function index() {
+    public function getAll() {
         return response()->json([
             "data" => Torneo::with('videojuego')->get(),
             "message" => "Lista de torneos obtenida exitosamente"
@@ -48,4 +48,37 @@ class TorneoController extends Controller
         ]);
     }
 
+    public function update(Request $request, $torneoId){
+        $torneo = Torneo::find($torneoId);
+        if (!$torneo) {
+          return response()->json([
+            "message"=> "No se encontro el toreno que deseas actualizar"
+            ], 500);
+        }
+
+        $torneo->nombre = $request->nombre;
+        $torneo->limite_equipos = $request->limite_equipos;
+        $torneo->modalidad = $request->modalidad;
+        $torneo->videojuego_id = $request->videojuego_id;
+        $torneo->save();
+        return response()->json([
+            "message"=> "Actualziación Exitosa", 
+        ]);
+
+    }
+
+    public function remove(Request $request, $torneoId){
+        $torneo = Torneo::find($torneoId);
+        if (!$torneo) {
+            return response()->json([
+                "message"=> "No se encontró el torneo"
+            ],404);
+        }
+        $torneo->delete();
+        return response()->json([
+            "message"=> "Eliminación exitosa"
+        ],200);
+    }
+
 }
+
