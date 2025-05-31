@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table("torneos", function (Blueprint $table) {
-            $table->bigInteger("videojuego_id")->unsigned()
-            ->nullable()->after("id");
-
-            $table->foreign("videojuego_id")->references("id")->on("video_juegos")
-            ->onUpdate("cascade")->onDelete("set null");
+        Schema::create('resultados', function (Blueprint $table) {
+            $table->id();
+            
+            $table->timestamps();
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('resultados');
     }
 };
