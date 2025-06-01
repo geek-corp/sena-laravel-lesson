@@ -17,4 +17,8 @@ class Torneo extends Model
     public function videojuego(){
         return $this->belongsTo(VideoJuego::class, "videojuego_id");
     }
+
+    public function equipos() {
+        return $this->belongsToMany(Equipo::class, 'equipo_torneo', 'torneo_id', 'equipo_id');
+    }
 }

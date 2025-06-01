@@ -36,7 +36,7 @@ class TorneoController extends Controller
 
     public function getAll() {
         return response()->json([
-            "data" => Torneo::with('videojuego')->get(),
+            "data" => Torneo::with(['videojuego', 'equipos'])->get(),
             "message" => "Lista de torneos obtenida exitosamente"
         ]);
     }
@@ -78,6 +78,16 @@ class TorneoController extends Controller
         return response()->json([
             "message"=> "Eliminación exitosa"
         ],200);
+    }
+
+    public function inscribirEquipo(Request $request){
+        $torneo = Torneo::find($request->torneoId);
+        $torneo->equipos()->attach([$request->equipoId]);
+        
+        return response()->json([
+            "message" => "Equipo agregado con exito" 
+        ]);
+
     }
 
 }
