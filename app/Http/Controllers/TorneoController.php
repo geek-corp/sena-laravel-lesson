@@ -52,7 +52,7 @@ class TorneoController extends Controller
         $torneo = Torneo::find($torneoId);
         if (!$torneo) {
           return response()->json([
-            "message"=> "No se encontro el toreno que deseas actualizar"
+            "message"=> "No se encontro el torneo que deseas actualizar"
             ], 500);
         }
 

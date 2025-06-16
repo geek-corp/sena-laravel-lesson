@@ -28,3 +28,9 @@ Route::get('/videojuegos', [VideoJuegoController::class, 'getAll']);
 Route::put("/update-tournament/{torneoId}", [TorneoController::class, 'update']);
 
 Route::delete("/remove-tournament/{torneoId}", [TorneoController::class, "remove"]);
+
+
+Route::post("/create-Videojuego", [VideoJuegoController::class, 'create']);
+
+Route::put("/update-videojuego/{videojuegoId}", [VideoJuegoController::class, 'update']);
+Route::delete("/remove-videojuego/{videojuegoId}", [VideoJuegoController::class, "remove"]);
